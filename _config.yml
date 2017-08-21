@@ -1,11 +1,11 @@
-title: Sandeep Dasgupta 
+title: Sandeep Dasgupta's Blog 
 author: GitHub User
 email: sdasgup3@illinois.edu
 description: > # this means to ignore newlines until "baseurl:"
   A Blog to collect and express my thoughs on various topics.
-
+baseurl: ''
 github_username:  sdasgup3
-url: 'sdasgup.org'
+
 
 # Minima date format
 # refer to http://shopify.github.io/liquid/filters/date/ if you want to customize this
@@ -20,6 +20,16 @@ minima:
 # Build settings
 markdown: kramdown
 theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-compose
+
+# Exclude from processing
 exclude:
   - Gemfile
   - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
