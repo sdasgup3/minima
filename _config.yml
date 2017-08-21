@@ -1,12 +1,11 @@
-title: Your awesome title
+title: Sandeep Dasgupta 
 author: GitHub User
 email: sdasgup3@illinois.edu
 description: > # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  A Blog to collect and express my thoughs on various topics.
 
 github_username:  sdasgup3
+url:sdasgup.org
 
 # Minima date format
 # refer to http://shopify.github.io/liquid/filters/date/ if you want to customize this
