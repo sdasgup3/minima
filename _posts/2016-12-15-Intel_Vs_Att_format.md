@@ -12,7 +12,10 @@ date: 2016-12-15
 - In Intel syntax there are no register prefixes or immed prefixes. 
 - In AT&T however registers are prefixed with a '%' and immed's are prefixed with a '$'. 
 
-  ```
+
+{% highlight assembly %}
+
+
    Intel Syntax
    mov     eax,1
    mov     ebx,0ffh
@@ -22,7 +25,8 @@ date: 2016-12-15
    movl    $1,%eax
    movl    $0xff,%ebx
    int     $0x80
-  ```
+{% endhighlight %}
+
 
 ## Direction of Operands.
 - Intel: `instr dest src`
