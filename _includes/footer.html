@@ -7,7 +7,7 @@
         <ul class="contact-list">
             {% if site.email %}
              <li>Contact:</li>
-            <li>Contact:  <a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+            <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
             {% endif %}
         </ul>
       </div>
@@ -20,20 +20,20 @@
             {% include icon-github.html username=site.github_username %}
           </li>
           {% endif %}
-
+<!--
           {% if site.twitter_username %}
           <li>
             {% include icon-twitter.html username=site.twitter_username %}
           </li>
           {% endif %}
+-->
         </ul>
       </div>
-
-   <!--    
+<!--    
       <div class="footer-col footer-col-3">
         <p>{{ site.description | escape }}</p>
       </div>
-   -->
+-->
     </div>
 
   </div>
