@@ -1,3 +1,11 @@
+---
+layout: post
+title:  Leveraging Undefined Behavious
+tags: 
+- Undefined behaviour
+date: 2017-09-12 
+---
+
 # Leveraging undefined behavious by optimizing compilers.
 ## Case I
 ```C
