@@ -7,6 +7,9 @@ date: 2017-09-12
 ---
 
 # Leveraging undefined behavious by optimizing compilers.
+
+Undefined behaviors facilitate optimizations by permitting a compiler to assume that programs will only execute defined operations.
+
 ## Case I
 ```C
 #include <iostream>
