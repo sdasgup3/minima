@@ -6,6 +6,7 @@ tags:
 date: 2017-09-12
 ---
 
+
 # Leveraging undefined behavious by optimizing compilers.
 
 Undefined behaviors facilitate optimizations by permitting a compiler to assume that programs will only execute defined operations.
@@ -157,8 +158,49 @@ foo(int*):
 If p is null, the if access is UD; If p is non null, then `return 0` will
 happen. So in legal cases, 0 is returned and so is the optimization.
 
+# Pointer Overflow
+It is undefined behavior to perform pointer arithmetic where the result is outside of an object, with the exception that it is permissible to point one element past the end of an array:
+
+```
+int a[10];
+int *p1 = a - 1; // UB
+int *p2 = a; // ok
+int *p3 = a + 9; // ok
+int *p4 = a + 10; // ok, but can't be dereferenced
+int *p5 = a + 11; // UB
+```
+## Interesting case
+```C
+char buffer[BUFLEN];
+char *buffer_end = buffer + BUFLEN;
+
+/* ... */
+unsigned int len;
+
+if (buffer + len >= buffer_end)
+  die_a_gory_death("len is out of range\n");
+```
+Here, the programmer is trying to ensure that len (which might come from an untrusted source) fits within the range of buffer. There is a problem, though, in that if len is very large, the addition could cause an overflow, yielding a pointer value which is less than buffer. So a more diligent programmer might check for that case by changing the code to read:
+
+```C
+if (buffer + len >= buffer_end || buffer + len < buffer)
+  loud_screaming_panic("len is out of range\n");
+```
+
+This code should catch all cases; ensuring that len is within range. There is only one little problem: recent versions of GCC will optimize out the second test (returning the if statement to the first form shown above), making overflows possible again. So any code which relies upon this kind of test may, in fact, become vulnerable to a buffer overflow attack.
+
+This behavior is allowed by the C standard, which states that, in a correct program, pointer addition will not yield a pointer value outside of the same object. So the compiler can assume that the test for overflow is always false and may thus be eliminated from the expression. It turns out that GCC is not alone in taking advantage of this fact: some research by GCC developers turned up other compilers (including PathScale, xlC, LLVM, TI Code Composer Studio, and Microsoft Visual C++ 2005) which perform the same optimization. So it seems that the GCC developers have a legitimate reason to be upset: CERT would appear to be telling people to avoid their compiler in favor of others - which do exactly the same thing.
+
+The right solution to the problem, of course, is to write code which complies with the C standard. In this case, rather than doing pointer comparisons, the programmer should simply write something like:
+
+```C
+if (len >= BUFLEN)
+    launch_photon_torpedoes("buffer overflow attempt thwarted\n");
+```
 
 ### References
 - [John Regehr Blog: Compilers and Termination Revisited](https://blog.regehr.org/archives/161)
 - [cppreference.com](http://en.cppreference.com/w/c/language/behavior)
 - [Undefined behavior can result in time travel](https://blogs.msdn.microsoft.com/oldnewthing/20140627-00/?p=633/)
+- [Pointer Overflow Checking](https://blog.regehr.org/archives/1395)
+- [GCC & pointer overflows](https://lwn.net/Articles/278137/)
