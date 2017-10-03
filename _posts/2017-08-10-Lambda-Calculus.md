@@ -155,7 +155,8 @@ x   λ   z   z           λ       y
       - (λ y . ((+ 10) y)) 20
       - ((+ 10) 20) = 30
   - Example in the context of programming
-  ```C++
+
+```C++
   #include <iostream>
   using namespace std;
 
@@ -173,7 +174,7 @@ x   λ   z   z           λ       y
     cout << F(1, 2, 3) << endl;
     cout << F_curry() << endl;
   }
-  ```
+```
 ## Problems with the naive rewriting rule
 ### Problem 1
 We don't, in general, want to replace all occurrences of x.
