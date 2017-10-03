@@ -41,8 +41,8 @@ date: 12-09-2017
   - E → E1 E2, function application, is similar to calling function E1 and
   setting its formal parameter to the actual parameter E2
 
-### Example1
-#### I
+### Examples
+#### Expl I
   - λ x . + x 1 == λ x . (+ x 1)
     - Represents a function that adds one to its argument
   - (λ x . + x 1) 2
@@ -105,7 +105,7 @@ y   2     y   2
 
 ```
 
-#### II
+#### Expl II
 Note that the result of rewriting a non-pure lambda expression can be a constant (as in the examples above), but the result can also be a lambda expression: a variable, or an abstraction, or an application. For a pure lambda expression, the result of rewriting will always itself be a lambda expression. Here are some more examples:
 
 (λf.λx.fx)λy.y+1
