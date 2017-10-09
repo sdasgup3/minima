@@ -1,18 +1,18 @@
 ---
 layout: post
 title: Build SPEC2006 using LLVM's cmake infrastructure
-tags: 
+tags:
 - LLVM
 - CMake
 - SPEC CPU 2006 Benchmark
-date: 2017-08-21 
+date: 2017-08-21
 ---
 
 ```shell
   # Setup the environment.
-  $LLVM_SRC=<Root of LLVM source code tree>
-  $LLVM_BLD=<Root of LLVM build  tree>
-  $SPEC_SRC=<Root of SPEC 2006 source code tree>
+  export LLVM_SRC=<Root of LLVM source code tree>
+  export LLVM_BLD=<Root of LLVM build  tree>
+  export SPEC_SRC=<Root of SPEC 2006 source code tree>
   TESTSUITE_BUILD_DIR=<Build dir of test-suite>
 
   # Make SPEC source available to LLVM build system.

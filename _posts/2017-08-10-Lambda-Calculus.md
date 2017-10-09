@@ -26,6 +26,11 @@ date: 12-09-2017
   λ x.yz == λ x.(yz)
   λx.λy.zw == λx.(λy.(zw))
   ```
+  Note:
+  ``let x = e in e'``
+  is nothing but syntactic sugar for
+
+ ``(λ x . e') e``
 
 ## Semantics
 
