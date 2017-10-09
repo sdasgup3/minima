@@ -225,7 +225,7 @@ Source: 4/ (-8/2) = -1
 Target : 0
 ```
 
-# Bug 21245 why
+# Bug 21245 (why!!)
 
 ```
 Pre: C2 % (1<<C1) == 0
@@ -324,5 +324,12 @@ Source value: 0x0 (0)
 Target value: undef
 
 Source: -8 % (0 - (-1)) = -8 % 1 = 0
-Target: -8 % -1 =  UD 
+Target: -8 % -1 =  UD
 ```
+
+
+# Refereces
+ - [Undefined Behavious in LLVM](https://www.cs.utah.edu/~regehr/llvm-ub.pdf)
+ - [LLVM language referece manual](https://llvm.org/docs/LangRef.html)
+ - [Provably correct peephole optimizations with alive](https://dl.acm.org/citation.cfm?id=2737965)
+ - [Alive](https://rise4fun.com/Alive)
