@@ -6,6 +6,7 @@ tags:
 date: 06-10-2017
 ---
 
+Here I am collecting some important points from various articiles mentioned in the reference section. 
 
 LLVM has three distinct kinds of undefined behavior. Together, they enable many desirable optimizations, and LLVM aggressively exploits these opportunities.
 
