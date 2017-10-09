@@ -6,7 +6,7 @@ tags:
 date: 06-10-2017
 ---
 
-Here I am collecting some important points from various articiles mentioned in the reference section. 
+Here I am collecting some important points from various articiles mentioned in the reference section.
 
 LLVM has three distinct kinds of undefined behavior. Together, they enable many desirable optimizations, and LLVM aggressively exploits these opportunities.
 
@@ -328,9 +328,33 @@ Source: -8 % (0 - (-1)) = -8 % 1 = 0
 Target: -8 % -1 =  UD
 ```
 
+# Bug  31633
+InstCombine currently folds  "select %c, undef, %foo" into %foo, because it assumes that undef can take any value that %foo may take.
+
+```
+%y2 = add nsw i32 %y, 1
+%s = select i1 %c, i32 undef, i32 %y2
+%r = icmp sgt i32 %s, %y
+
+=>
+%r = true
+
+ERROR: Mismatch in values of i1 %r
+
+Example:
+%y i32 = 0x7FFFFFFF (2147483647)
+%c i1 = 0x1 (1, -1)
+%y2 i32 = poison
+%s i32 = 0x00000000 (0)
+Source value: 0x0 (0)
+Target value: 0x1 (1, -1)
+
+%y2 overflows and becomes poison, but the select should return undef only, not poison.
+```
 
 # Refereces
  - [Undefined Behavious in LLVM](https://www.cs.utah.edu/~regehr/llvm-ub.pdf)
  - [LLVM language referece manual](https://llvm.org/docs/LangRef.html)
  - [Provably correct peephole optimizations with alive](https://dl.acm.org/citation.cfm?id=2737965)
  - [Alive](https://rise4fun.com/Alive)
+ - [Translation Validation of Bounded Exhaustive Test Cases](https://blog.regehr.org/archives/1510)
