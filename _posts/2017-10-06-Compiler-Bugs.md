@@ -88,9 +88,9 @@ Example 2
 =>
 %1 = add  %x, 1
 
-Optimization is correct!
-
+Optimization is correct
 ```
+
 Example 3
 ---------
 ```
@@ -102,7 +102,7 @@ Example 3
 %2 = true
 
 Done: 1
-Optimization is correct!
+Optimization is correct
 ```
 
 shl
