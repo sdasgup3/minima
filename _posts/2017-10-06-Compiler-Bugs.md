@@ -91,8 +91,8 @@ Example 2
 Optimization is correct!
 
 ```
- Example 3 (WHY ??)
- ---------
+Example 3
+---------
 ```
 %1 = add nsw %x, 1
 %2 = icmp sgt %1, %x
@@ -101,13 +101,8 @@ Optimization is correct!
 
 %2 = true
 
-ERROR: Mismatch in values of i1 %2
-
-Example:
-%x i1 = 0x0 (0)
-%1 i1 = 0x1 (1, -1)
-Source value: 0x0 (0)
-Target value: 0x1 (1, -1)
+Done: 1
+Optimization is correct!
 ```
 
 shl
@@ -143,7 +138,7 @@ srem
 
 Taking the remainder of a division by zero is undefined behavior. For vectors, if any element of the divisor is zero, the operation has undefined behavior. Overflow also leads to undefined behavior; this is a rare case, but can occur, for example, by taking the remainder of a 32-bit division of -2147483648 by -1. (The remainder doesn’t actually overflow, but this rule lets srem be implemented using instructions that return both the result of the division and the remainder.)
 
-# Bug 20186 (Why)
+# Bug 20186
 
 The transformation of -(X/C) to X/(-C) is invalid if C == INT_MIN.
 
@@ -156,11 +151,11 @@ The transformation of -(X/C) to X/(-C) is invalid if C == INT_MIN.
 ERROR: Domain of definedness of Target is smaller than Source's for i4 %r
 
 Example:
-%X i4 = poison
+%X i4 = 0x8 (8, -8)
 C i4 = 0x1 (1)
-%a i4 = poison
-Source value: 0x9 (9, -7)
-Target value: UB
+%a i4 = 0x8 (8, -8)
+Source value: 0x8 (8, -8)
+Target value: undef
 ```
 
 # Bug 20189
@@ -226,7 +221,7 @@ Source: 4/ (-8/2) = -1
 Target : 0
 ```
 
-# Bug 21245 (why!!)
+# Bug 21245
 
 ```
 Pre: C2 % (1<<C1) == 0
@@ -235,18 +230,22 @@ Pre: C2 % (1<<C1) == 0
   =>
 %r = sdiv %X, (C2 / (1 << C1))
 
-
 ERROR: Mismatch in values of i4 %r
 
 Example:
-%X i4 = 15 (0xf)
-C1 i4 = 3 (0x3)
-C2 i4 = 8 (0x8)
-%s i4 = 8 (0x8)
-Source value: 1 (0x1)
-Target value: 15 (0xf)
+%X i4 = 0xF (15, -1)
+C1 i4 = 0x3 (3)
+C2 i4 = 0x8 (8, -8)
+%s i4 = 0x8 (8, -8)
+Source value: 0x1 (1)
+Target value: 0xF (15, -1)
 
+Source:
+1111 shl 3 bit == 1000 == -8
+-8/C2 = 1
 
+Target:
+-1 / 8/8 or -1/ -8/-8 == -1 (15 or -1)
 ```
 
 # Bug 21255
