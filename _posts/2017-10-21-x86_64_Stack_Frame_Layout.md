@@ -91,8 +91,8 @@ int main()
 ```
 Right before the return statement, the stack frame for foobar looks like this:
 
-![]({{site.url}}/assets/images/stackframe1.png) 
-![1](https://github.com/sdasgup3/sdasgup3.github.io/blob/master/_posts/figs/stackframe1.png)
+![]({{site.url}}/assets/images/stackframe1.png)
+
 
 The green data were pushed onto the stack by the calling function, and the blue ones by foobar itself.
 
@@ -124,7 +124,7 @@ r9: f
 g & h are passed onto stack
 ```
 
-![2](figs/x64_frame_nonleaf.png)
+![]({{site.url}}/assets/images/x64_frame_nonleaf.png)
 
 
 ## Reference
