@@ -50,11 +50,11 @@ Low Addres -->  |         |
 ```
 
 Similarly, the pop instruction takes a value off the top of stack and places it in its operand, increasing the stack pointer afterwards. In other words, this:
-``pop eax``
+``pop rax``
 Is equivalent to this:
 ```
-mov eax, [esp]
-add esp, 4
+mov (%rsp), %rax
+add  $8, %rsp
 ```
 ```
 High Addres --> -----------
