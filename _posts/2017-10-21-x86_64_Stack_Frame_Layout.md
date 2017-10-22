@@ -92,6 +92,7 @@ int main()
 Right before the return statement, the stack frame for foobar looks like this:
 
 ![]({{site.url}}/assets/images/stackframe1.png)
+![](images/stackframe1.png)
 
 
 The green data were pushed onto the stack by the calling function, and the blue ones by foobar itself.
@@ -125,6 +126,8 @@ g & h are passed onto stack
 ```
 
 ![]({{site.url}}/assets/images/x64_frame_nonleaf.png)
+![](images/x64_frame_nonleaf.png)
+
 
 
 ## Reference
