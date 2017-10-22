@@ -7,7 +7,7 @@ date: 12-10-2017
 ---
 
 
-__The following item is borrowed from the article mentioned in Reference section.__ 
+__The following is an exceprt from the article mentioned in Reference section.__
 
 # Process Stack
 ```
