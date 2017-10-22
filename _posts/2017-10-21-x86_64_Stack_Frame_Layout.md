@@ -90,7 +90,9 @@ int main()
 }
 ```
 Right before the return statement, the stack frame for foobar looks like this:
+
 ![1](_figs/stackframe1.png)
+
 The green data were pushed onto the stack by the calling function, and the blue ones by foobar itself.
 
 
@@ -120,7 +122,9 @@ r8: e
 r9: f
 g & h are passed onto stack
 ```
+
 ![2](_figs/x64_frame_nonleaf.png)
+
 
 ## Reference
 1. [Stack frame layout on x86-64](https://eli.thegreenplace.net/2011/09/06/stack-frame-layout-on-x86-64#id8)
