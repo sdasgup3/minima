@@ -14,7 +14,7 @@ date: 2016-12-16
 gdb -tui <program>
 ```
 
-- Change the layput to asembly
+- Change the layout to Assembly
 ```
 layout asm
 ```
@@ -22,11 +22,11 @@ layout asm
 ```
 layout split
 ```
-- Apply the following customizations
+- Apply the following customization
 ```
-set disassembly-flavor intel/att
+set disassembly-flavor att/intel
 set print asm-demangle
-set disassemble-next-line on  //ask gdb to show us the next instrcution every time
+set disassemble-next-line on  //ask gdb to show us the next instruction every time
 ```
 - Puts break point on main and invoke run
 ```
