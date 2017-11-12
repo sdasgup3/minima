@@ -36,5 +36,7 @@ start
 ```
 x/Ni $pc
 ```
-- Use `nexti,stepi` instead of `next, step` which traverse the source lines
-- `x/[NUM][SIZE][FORMAT]` is for examining memory; x $rax does not make sense
+- Navigation and Print
+  - Use `nexti,stepi` instead of `next, step` which traverse the source lines
+  - `x/[NUM][SIZE][FORMAT]` is for examining memory; x $rax does not make sense
+  - info frame/locals/registers

@@ -4,7 +4,7 @@ title: Decimal-Hexadecimal-2s Complement Binary Converter
 tags:
 - bits
 - Number System
-date: 2017-11-01
+date: 01-11-2017
 ---
 
 Getting rid of my dependecies on online convertors.
