@@ -1,13 +1,13 @@
 ---
 layout: post
-title: Intel vs AT&T Syntax
+title: Intel (NASM) vs AT&T (GAS) Syntax
 tags:
 - Assembly
 - Decompilation
 date: 15-12-2016
 ---
 
-## Prefixes
+## Register & Immediate Prefixes
 
 - In Intel syntax there are no register prefixes or immed prefixes.
 - In AT&T however registers are prefixed with a '%' and immed's are prefixed with a '$'.
@@ -74,10 +74,15 @@ leal    (%ebx,%ecx),%eax
 subl    -0x20(%ebx,%ecx,0x4),%eax
 ```
 
-## Suffixes
+## Mnemonic Suffixes
 
-- Att: The AT&T syntax **mnemonics** have a suffix. The significance of this suffix is that of operand size. 'l' is for long(32), 'w' is for word, and 'b' is for byte.
-- Intel: Suffix for **memory operands**, i.e. byte ptr(8), word ptr(16), dword ptr(32).
+- Att: The AT&T syntax **mnemonics** have a suffix. The significance of this suffix is that of operand size. ]
+- Intel: Suffix for **memory operands**
+
+|  Style     |  8 bits     | 16 bit | 32 bits| 64 bits |
+|:----:|:------:|:--:|:--:|:--:|
+|  ATT(GAS)     |   'b'    | 'w'|'l' | 'q'|
+|  Intel(NASM)     | byte ptr      | word ptr | dword ptr | qword ptr |
 
   ```
    Intel Syntax
@@ -92,3 +97,58 @@ subl    -0x20(%ebx,%ecx,0x4),%eax
    movl    %ebx,%eax
    movl    (%ebx),%eax
   ```
+## Data Size Declarations
+| Style | 8 bits | 16 bit | 32 bits| 64 bits | Example|
+|:--:|:--:|:--:|:--:|:--:|:--:|
+|  ATT(GAS)     |   'db'    | 'dw'|'dd' | 'dq'|  `var1 dd 40` |
+| Intel(NASM) | .byte | .int | .long | | `var1: .int 40` | 
+
+
+## Comment
+`;` in Intel and `#` or  C style  in Att.
+
+
+## Examples
+NASM
+```
+; Text segment begins
+section .text
+
+   global _start
+
+; Program entry point
+   _start:
+
+; Put the code number for system call
+      mov   eax, 1
+
+; Return value
+      mov   ebx, 2
+
+; Call the OS
+      int   80h
+```
+GAS
+```
+# Text segment begins
+.section .text
+
+   .globl _start
+
+# Program entry point
+   _start:
+
+# Put the code number for system call
+      movl  $1, %eax
+
+/* Return value */
+      movl  $2, %ebx
+
+# Call the OS
+      int   $0x80
+
+```
+
+
+# References
+- [Linux assemblers: A comparison of GAS and NASM](https://www.ibm.com/developerworks/library/l-gas-nasm/index.html)
