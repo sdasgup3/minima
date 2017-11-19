@@ -32,11 +32,15 @@ set disassemble-next-line on  //ask gdb to show us the next instruction every ti
 ```
 start
 ```
-- Print the next N instructions that $pc or $rip points to.
-```
-x/Ni $pc
-```
-- Navigation and Print
-  - Use `nexti,stepi` instead of `next, step` which traverse the source lines
-  - `x/[NUM][SIZE][FORMAT]` is for examining memory; x $rax does not make sense
-  - info frame/locals/registers
+
+- Examine memory: x/FMT ADDRESS.
+  - ADDRESS is an expression for the memory address to examine.
+  - FMT == [NUM][SIZE][FORMAT]
+    - [Format] ::= [ o(octal), x(hex), d(decimal), u(unsigned decimal), t(binary), f(float), a(address), i(instruction), c(char), s(string), z(hex, zero padded on the left)].
+    - [Size] ::= [b(byte), h(halfword), w(word), g(giant, 8 bytes)]
+    - The specified number of objects of the specified size are printed according to the format.  If a negative number is specified, memory is examined backward from the address.
+    - Example: Print the next N instructions that $pc or $rip points to.
+      ```
+      x/Ni $pc
+      ```
+- Use `nexti,stepi` instead of `next, step` which traverse the source lines
