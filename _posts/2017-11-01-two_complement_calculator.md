@@ -8,6 +8,7 @@ date: 01-11-2017
 ---
 
 Getting rid of my dependecies on online convertors.
+The online version coming soon...
 
 ```python
 #!/usr/bin/python
