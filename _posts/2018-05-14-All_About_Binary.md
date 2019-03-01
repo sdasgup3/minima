@@ -10,15 +10,45 @@ date: 14-05-2018
 
 ### objdump
 ```
-objdump -d -M=x86-64,att ./a.out
+objdump -d -M=x86-64,att --no-show-raw-insn ./a.out
+```
+### Calling C from Assembly
+```
+main:
+  pushq   %rax
+  movq $-1, %rdi
+  movq $-1, %rax
+  movl    $65, %edi
+  callq   putchar
+  xorl    %eax, %eax
+  popq    %rcx
+  retq
+// as test.s -o test.o
+// gcc test.o
+```
+### Some useful gcc options
+```
+// Command used by compiler explorer V0.1
+gcc test.c -02 -c -S -o - -masm=att | c++filt | grep -vE '\s+\.'
+
+-fno-asynchronous-unwind-tables: disable CFI directives on gas assembler output
+
+
+-march=haswell // Targetting ISA
 ```
 
-
 # Articles
+
+## Ida
+ - [IDA Tricks - Handling dynamic imports](https://www.usualsuspect.re/article/ida-tricks-handling-dynamic-imports)
+ - [Beginner's Guide](https://leanpub.com/IDAPython-Book)
 
 ## Tutorial on x86 assembly programming (Syntax/Semantics)
  - [A fundamental introduction](https://www.nayuki.io/page/a-fundamental-introduction-to-x86-assembly-programming#5-memory-addressing-reading-writing)
  - [Introduction to X86-64 Assembly for Compiler Writers](https://www3.nd.edu/~dthain/courses/cse40243/fall2015/intel-intro.html)
+ - [x86 Assembly Language Reference Manual
+](https://docs.oracle.com/cd/E26502_01/html/E28388/toc.html)
+- [Introduction to x64 Assembly](https://software.intel.com/en-us/articles/introduction-to-x64-assembly)
 
 ## Calling Conventions
   - [x86 Disassembly/Floating Point Numbers](https://en.wikibooks.org/wiki/X86_Disassembly/Floating_Point_Numbers)

@@ -8,6 +8,11 @@ date: 2016-12-16
 ---
 
 ## Useful commands
+- Signal Handlers
+```
+info signal SIGUSR1
+handle SIGUSR1 noprint nostop
+```
 
 - Run gdb in Text User Interface (TUI) mode
 ```shell
@@ -50,6 +55,7 @@ start
 info registers
 info all-registers
 info registers regname …
+info registers eflags
 ```
 - Printing & setting xmm registers
 ```

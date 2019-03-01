@@ -6,6 +6,13 @@ tags:
 date: 2017-09-12
 ---
 
+One of the classic examples of compilers making use of undefined behaviour is as follows:
+C standars says signed integers overflow is undefined.
+
+Knowing this information help compiler to optimize `x+1>x` to true. As compilers know that `INT_MAX+1` is undefined so it can safely make the optimization.
+
+Had signed integer overflow been defined (with a definition of say wrap around), then we will not be able to do the optimization as x + 1 is not `>` x if x == `INT_MAX` (under the wrap around defintion)
+
 
 # Leveraging undefined behavious by optimizing compilers.
 
